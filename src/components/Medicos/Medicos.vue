@@ -123,7 +123,7 @@
       </v-col>
 
                 <v-card-title>
-                  <span class="headline">Categoriías Asociadas</span>
+                  <span class="headline">Categorías Asociadas</span>
                 </v-card-title>
                 <v-data-table
                     :headers="headersDialog"

@@ -152,15 +152,15 @@ export default {
   mounted() {
     this.getSpecialties()
   },
-/*   watch: {
-  showDialog(newvalue, oldvalue) {
+  watch: {
+  dialog(newvalue, oldvalue) {
     if (!newvalue && oldvalue)
         setTimeout(() => {
         this.editedItem = Object.assign({}, this.defaultItem)
         this.editedIndex = -1
       }, 300)
   }
-}, */
+},
   methods: {
     showMedicos() {
       this.$router.push({name: 'Medicos'})

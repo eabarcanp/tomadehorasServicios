@@ -168,8 +168,8 @@ export default {
         title: '¿Está seguro de anular la cita?',
         html: `<p>Fecha: <b>${this.formatDate(item.date)}</b></p>
         <p>Hora: <b>${item.start_time}</b></p>
-        <p>Doctor: <b>${item.doctor_name}</b></p>
-        <p>Especialidad: <b>${item.specialty_name}</b></p>
+        <p>Gestión: <b>${item.doctor_name}</b></p>
+        <p>Área: <b>${item.specialty_name}</b></p>
         `,
         icon: 'warning',
         showCancelButton: true,
@@ -199,9 +199,9 @@ export default {
         title: '¿Está seguro de confirmar la cita?',
         html: `<p>Fecha: <b>${this.formatDate(item.date)}</b></p>
         <p>Hora: <b>${item.start_time}</b></p>
-        <p>Doctor: <b>${item.doctor_name}</b></p>
-        <p>Especialidad: <b>${item.specialty_name}</b></p>
-        <p>Documentos necesarios:</p>
+        <p>Gestión: <b>${item.doctor_name}</b></p>
+        <p>Área: <b>${item.specialty_name}</b></p>
+        <p>Requisitos:</p>
         <ul style="text-align: justify;">
           ${concatenatedString}
         </ul>

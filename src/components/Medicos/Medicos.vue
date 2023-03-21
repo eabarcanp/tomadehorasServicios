@@ -95,7 +95,7 @@
       v-model="editedItem.documents"
     ></v-textarea> -->
 
-        <label>Documentos necesarios:</label>
+        <label>Requisitos:</label>
         <div v-if="editedItem && editedItem.required_documents"  v-for="(document, i) in editedItem.required_documents" :key="i">
         <v-text-field
           label="Documento"
@@ -117,13 +117,13 @@
         rounded
         small
       >
-        Añadir Documento
+        Añadir
       </v-btn>
         </div>
       </v-col>
 
                 <v-card-title>
-                  <span class="headline">Especialidades Asociadas</span>
+                  <span class="headline">Categoriías Asociadas</span>
                 </v-card-title>
                 <v-data-table
                     :headers="headersDialog"
@@ -142,7 +142,7 @@
                     </v-icon>
                   </template>
                 </v-data-table>
-                <v-btn color="primary lighten-1" class="ma-1" @click="AddSpecialty">Asociar Especialidad</v-btn>
+                <v-btn color="primary lighten-1" class="ma-1" @click="AddSpecialty">Asociar Categoría</v-btn>
                 <v-btn color="primary lighten-1" class="ma-1" @click="showHorario">Ver Horario</v-btn>
                 <v-btn color="primary lighten-1" class="ma-1" @click="showAgenda">Ver Agenda</v-btn>
               </v-row>
@@ -175,7 +175,7 @@
                       :close-on-select="false"
                       :clear-on-select="false"
                       :preserve-search="true"
-                      placeholder="Seleccione una especialidad"
+                      placeholder="Seleccione una categoría"
                       label="name"
                       track-by="id"
                       :preselect-first="false"
@@ -476,7 +476,7 @@ export default {
     editItem(item) {
       this.editedIndex = this.medicos.indexOf(item)
       this.editedItem = Object.assign({}, item)
-      this.formTitle = 'Editar Atención'
+      this.formTitle = 'Editar Categoría'
       this.isEditing = true;
       this.dialog = true
     },

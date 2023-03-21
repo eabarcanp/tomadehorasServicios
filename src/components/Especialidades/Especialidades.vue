@@ -63,9 +63,9 @@
               <v-row>
                 <v-col cols="12" sm="12" md="12">
                   <v-text-field v-model="editedItem.name"
-                                label="Nombre"
-                                outlined
-                                dense></v-text-field>
+                    label="Nombre"
+                    outlined
+                    dense></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="12" md="12">
                   <v-card-title>
@@ -146,12 +146,21 @@ export default {
     defaultItem: {
       name: '',
     },
-    formTitle: 'Nueva Especialidad',
+    formTitle: 'Nueva Categoría',
     loading: false,
   }),
   mounted() {
     this.getSpecialties()
   },
+/*   watch: {
+  showDialog(newvalue, oldvalue) {
+    if (!newvalue && oldvalue)
+        setTimeout(() => {
+        this.editedItem = Object.assign({}, this.defaultItem)
+        this.editedIndex = -1
+      }, 300)
+  }
+}, */
   methods: {
     showMedicos() {
       this.$router.push({name: 'Medicos'})
@@ -174,7 +183,7 @@ export default {
       console.log(item)
       this.editedIndex = this.especialidades.indexOf(item)
       this.editedItem = Object.assign({}, item)
-      this.formTitle = 'Editar Especialidad'
+      this.formTitle = 'Editar Categoría'
       this.dialog = true
 
     },

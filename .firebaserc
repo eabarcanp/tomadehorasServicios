@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "tomadehoras-a4daa"
+  },
+  "targets": {
+    "tomadehoras-a4daa": {
+      "hosting": {
+        "serviciosnph": [
+          "serviciosnph"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

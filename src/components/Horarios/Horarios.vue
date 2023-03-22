@@ -6,7 +6,7 @@
           <!--          titulo -->
           <v-card class="elevation-12 rounded ">
             <v-card-title class="justify-center align-center">
-              <h2 class="headline mb-0">Horario Medico: {{ medico.name }}</h2>
+              <h2 class="headline mb-0">Horario: {{ medico.name }}</h2>
             </v-card-title>
             <!--            gestión de dias y horas laborales-->
             <v-card-text>

@@ -7,7 +7,7 @@
           <!--          titulo -->
           <v-card class="elevation-12 rounded ">
             <v-card-title class="justify-center align-center">
-              <h2 class="headline mb-0">Agenda Medico: {{ medico.name }}</h2>
+              <h2 class="headline mb-0">Agenda: {{ medico.name }}</h2>
             </v-card-title>
             <!--            visualizacion de agenda-->
             <v-card-text>

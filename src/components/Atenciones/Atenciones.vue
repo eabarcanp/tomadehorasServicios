@@ -6,7 +6,7 @@
              <v-row>
             <v-col cols="12">
               <div class="d-flex justify-space-between align-center card-selector flex-row pa-4 ">
-                <label class="label-selector">Pacientes</label>
+                <label class="label-selector">Atenciones</label>
 <!--                numero de pacientes esperando consulta -->
                 <div
                     class="d-flex justify-center align-center flex-column pa-4"
@@ -517,7 +517,7 @@ export default {
                 "doctor_id": item.id_doctor,
                 "doctor_name": item.doctor_name,
                 "telemedicine": item.telemedicine,
-                "details": `Paciente: ${item.patient_name} - Horario: ${item.start_time} - ${item.end_time} - Especialidad: ${item.specialty_name}`,
+                "details": `Usuario: ${item.patient_name} - Horario: ${item.start_time} - ${item.end_time} - Especialidad: ${item.specialty_name}`,
               }
               events.push(event)
             })
@@ -581,7 +581,7 @@ export default {
       }else{
         Swal.fire({
           title: 'Atención',
-          text: "Asistió al paciente?",
+          text: "Asistió al usuario?",
           icon: 'warning',
           showDenyButton: true,
           confirmButtonColor: '#3085d6',

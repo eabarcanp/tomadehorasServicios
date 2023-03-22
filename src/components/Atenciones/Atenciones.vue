@@ -2,7 +2,7 @@
   <v-main>
     <v-container fluid class="justify-center align-center fill-height gradientBackground">
       <v-row class="justify-center">
-        <v-col cols="3">
+        <v-col cols="12" md="3">
              <v-row>
             <v-col cols="12">
               <div class="d-flex justify-space-between align-center card-selector flex-row pa-4 ">
@@ -74,7 +74,7 @@
           </v-row>
         </v-col>
 
-        <v-col cols="8" v-if="!loading">
+        <v-col cols="12" md="8" class="order-first order-md-last" v-if="!loading">
 
           <div class="d-flex justify-space-between align-start card-selector flex-column pa-4 ">
             <h3 class="label-selector">Consultas </h3>
@@ -583,9 +583,9 @@ export default {
           title: 'Atención',
           text: "Asistió al paciente?",
           icon: 'warning',
-          showCancelButton: true,
+          showDenyButton: true,
           confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
+          denyButtonColor: '#d33',
           confirmButtonText: 'Si',
           cancelButtonText: 'No'
         }).then((result) => {
@@ -594,6 +594,26 @@ export default {
             let data = {
               id: event.id,
               assistance: 1
+            }
+            updateAppointment(data).then(response => {
+              this.loading = false
+              this.$router.push({
+                name: "Ficha",
+                params: {id: event.patient_id},
+                query: {especialidad: event.specialty_id}
+              })
+            }).catch(error => {
+              this.loading = false
+              this.showMessage = true
+              this.message = error.response.data.message
+              this.messageColor = "error"
+            })
+          }
+          else if(result.isDenied) {
+            this.loading = true
+            let data = {
+              id: event.id,
+              assistance: 0
             }
             updateAppointment(data).then(response => {
               this.loading = false

@@ -10,7 +10,7 @@
           src="@/assets/logoBlanco.png"
           max-width="150"
           max-height="150"
-          class="mx-auto"
+          class="mx-auto d-none d-sm-block"
       ></v-img>
       <v-spacer></v-spacer>
       <v-avatar

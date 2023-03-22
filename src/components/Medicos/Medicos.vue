@@ -7,7 +7,7 @@
           <v-card style="border-radius: 15px">
             <v-toolbar card  elevation="1">
               <v-icon left>mdi-clipboard-multiple</v-icon>
-              <v-toolbar-title>Categoria</v-toolbar-title>
+              <v-toolbar-title>Tipo de Atencion</v-toolbar-title>
             </v-toolbar>
             <v-card-title>
               <v-text-field

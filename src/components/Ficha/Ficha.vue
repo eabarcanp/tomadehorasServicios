@@ -7,7 +7,7 @@
           <v-card class="elevation-12  rounded-xl">
             <!--          titulo -->
             <v-card-title class="justify-center align-center">
-              <h2 class="headline mb-0">Ficha Medica: {{ paciente.name }}</h2>
+              <h2 class="headline mb-0">Ficha de Atención: {{ paciente.name }}</h2>
             </v-card-title>
             <!-- datos del paciente -->
             <v-card-text>
@@ -145,7 +145,7 @@
 
               <!--          lista de registros medico con expansion pannel-->
               <v-card-title class="justify-center align-center">
-                <h2 class="headline mb-0">Registros de Ficha Medica</h2>
+                <h2 class="headline mb-0">Registros de Atención</h2>
               </v-card-title>
 
                   <v-expansion-panels>
@@ -162,7 +162,7 @@
                             <v-col cols="12" md="6" lg="4">
                               <v-text-field
                                   v-model="item.doctor_name"
-                                  label="Doctor"
+                                  label="Gestión"
                                   outlined
                                   dense
                                   readonly
@@ -171,7 +171,7 @@
                             <v-col cols="12" md="6" lg="4">
                               <v-text-field
                                   v-model="item.specialty_name"
-                                  label="Especialidad"
+                                  label="Departamento"
                                   outlined
                                   dense
                                   readonly
@@ -345,7 +345,7 @@ export default {
         description: this.registro.description
       }
 
-      // createMedicalRecord(data).then(res => {
+      createMedicalRecord(data).then(res => {
         Swal.fire({
           title: 'Registro guardado',
           icon: 'success',
@@ -357,13 +357,13 @@ export default {
           this.registro = {}
           this.medicalRecord()
         })
-      // }).catch(err => {
-      //   Swal.fire({
-      //     title: 'Error al guardar registro',
-      //     icon: 'error',
-      //     confirmButtonText: 'Aceptar'
-      //   })
-      // })
+       }).catch(err => {
+         Swal.fire({
+           title: 'Error al guardar registro',
+           icon: 'error',
+           confirmButtonText: 'Aceptar'
+         })
+       })
     },
     cancelNuevoRegistro() {
       this.nuevoRegistro = false

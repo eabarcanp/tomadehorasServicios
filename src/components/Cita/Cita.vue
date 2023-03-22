@@ -46,7 +46,7 @@
                         <v-card-subtitle>
                           {{ cita.specialty_name }}
                           <strong>{{ cita.telemedicine ?
-                              'Telemedicina' :
+                              'Telemática' :
                               'Presencial'
                           }}</strong>
                         </v-card-subtitle>

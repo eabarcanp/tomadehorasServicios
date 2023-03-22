@@ -221,7 +221,7 @@
                           rounded
                           block
                       >
-                        Telemedicina
+                        Telemática
                       </v-btn>
                     </v-col>
                   </v-col>
@@ -768,7 +768,7 @@ export default {
                 id_schedule: item.id_schedule,
                 id_doctor: item.id_doctor,
                 id_specialty: item.id_specialty,
-                name: this.especialidad.name + " - " + (item.telemedicine ? "Telemedicina" : "Presencial"),
+                name: this.especialidad.name + " - " + (item.telemedicine ? "Telemática" : "Presencial"),
                 details: `Categoría: ${this.especialidad.name} - Horario: ${moment(starts_at).format("HH:mm")} - ${moment(ends_at).format("HH:mm")}`,
                 telemedicine: item.telemedicine
               })

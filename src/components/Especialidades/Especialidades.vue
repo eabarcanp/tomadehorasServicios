@@ -188,7 +188,6 @@ export default {
 
     },
     async deleteItem(item) {
-      console.log(item)
       //   swal alert para confirmar
       await Swal.fire({
         title: '¿Estas seguro?',
@@ -229,12 +228,10 @@ export default {
     async save() {
 
       if (this.editedIndex > -1) {
-        console.log(this.editedItem)
         this.loading = true
         await updateSpecialty(this.editedItem).then((response) => {
           //   Object.assign(this.especialidades[this.editedIndex], this.editedItem)
           this.loading = false
-          console.log(response)
         }).catch((error) => {
           console.log(error)
           this.loading = false
@@ -247,7 +244,6 @@ export default {
         }
         this.loading = true
         await createSpecialty(data).then((response) => {
-          console.log("response", response)
           this.loading = false
         }).catch((error) => {
           console.log(error)

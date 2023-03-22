@@ -328,7 +328,6 @@ export default {
       await getMedicalRecords(this.id).then(res => {
         this.registros = res.medicalRecords
         this.nuevoRegistroDisponible = res.canAddMedicalRecord
-        console.log(res)
         this.loading = false
       }).catch(err => {
         this.loading = false

@@ -266,14 +266,11 @@ export default {
       });
     },
     editItem(item) {
-      console.log(item);
       this.configuracion = item;
       this.dialog = true;
     },
     save() {
       putGeneralParams(this.configuracion, this.configuracion.id )
-      console.log(this.configuracion);
-      console.log(this.configuraciones[this.configuraciones.indexOf(this.configuracion)]);
       if(this.configuracion.name.includes('enable') || this.configuracion.name.includes('duration')){
       // update param
       }

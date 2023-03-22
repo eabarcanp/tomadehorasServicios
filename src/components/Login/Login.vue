@@ -23,9 +23,8 @@
                       max-width="250"
                       contain
                   ></v-img>
-                  <h3 class="text-center my-4 white--text font-weight-light">El futuro de la medicina está en tu
-                    hogar</h3>
-                  <v-form>
+
+                  <v-form class="mt-8">
                     <v-text-field
                         name="Email"
                         v-model="email"

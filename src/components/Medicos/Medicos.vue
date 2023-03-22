@@ -329,7 +329,6 @@ export default {
     onAddDocument() {
     this.editedItem.required_documents.push(this.document);
     this.document = ""
-    console.log(this.editedItem);
     },
     deleteDocument(id) {
     this.editedItem.required_documents.splice(id, 1);
@@ -399,7 +398,6 @@ export default {
       this.selectedSpecialties = this.editedItem.specialties;
     },
     closeSpecialty() {
-      console.log('close', this.editedItem.specialties);
       this.selectedSpecialties = [];
 
       this.dialogSpecialty = false;
@@ -413,7 +411,6 @@ export default {
       try {
         this.selectedSpecialties.forEach((specialty) => {
           if (!this.editedItem.specialties.includes(specialty)) {
-            console.log('asociar', specialty);
             createDoctorSpecialty({
               id_doctor: this.editedItem.id,
               id_specialty: specialty.id
@@ -424,7 +421,6 @@ export default {
         });
         this.editedItem.specialties.forEach((specialty) => {
           if (!this.selectedSpecialties.includes(specialty)) {
-            console.log('desasociar', specialty);
             deleteDoctorSpecialty({
               id_doctor: this.editedItem.id,
               id_specialty: specialty.id
@@ -496,7 +492,6 @@ export default {
           required_documents: this.editedItem.required_documents ? this.editedItem.required_documents.join("#*#") : ""
 
         }).then((response) => {
-          console.log(response.data);
           this.close()
         }).catch((error) => {
           console.log(error);
@@ -504,7 +499,6 @@ export default {
       } else {
         //  guardar usuario
         await createDoctor(this.editedItem).then((response) => {
-          console.log(response);
           this.editedItem.id = response.id;
           // sí hay especialidades asociarlas
           if (this.editedItem.specialties.length > 0) {

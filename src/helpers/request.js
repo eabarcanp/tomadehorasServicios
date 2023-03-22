@@ -5,7 +5,7 @@ import axios from 'axios'
 // const BASE = 'http://localhost:8024' //Local
 // const BASE = 'https://devapis.anubys.cl:8024' //Desarrollo
 const BASE = 'https://devapis.anubys.cl:8026/' //Desarrollo
-//const BASE = 'https://5203-190-196-70-164.sa.ngrok.io' //Desarrollo
+//const BASE = 'https://2424-190-196-70-164.sa.ngrok.io' //Desarrollo
 
 
 

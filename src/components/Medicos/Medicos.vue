@@ -161,7 +161,7 @@
       <v-dialog v-model="dialogSpecialty" max-width="500px">
         <v-card>
           <v-card-title>
-            <span class="headline">Especialidades</span>
+            <span class="headline">Categorías</span>
           </v-card-title>
           <v-card-text>
             <v-container>

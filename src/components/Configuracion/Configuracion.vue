@@ -141,7 +141,7 @@
 
 <script>
 
-import {getGeneralParams, updateAvatar} from "@/helpers/api/horas_medicas";
+import {getGeneralParams, updateAvatar, putGeneralParams} from "@/helpers/api/horas_medicas";
 
 export default {
   name: "Configuracion",
@@ -271,6 +271,7 @@ export default {
       this.dialog = true;
     },
     save() {
+      putGeneralParams(this.configuracion, this.configuracion.id )
       console.log(this.configuracion);
       console.log(this.configuraciones[this.configuraciones.indexOf(this.configuracion)]);
       if(this.configuracion.name.includes('enable') || this.configuracion.name.includes('duration')){

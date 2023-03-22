@@ -89,7 +89,7 @@
                 <v-col cols="12" md="6" lg="4">
                   <v-text-field
                       v-model="registro.doctor"
-                      label="Doctor"
+                      label="Gestión"
                       outlined
                       dense
                       readonly
@@ -98,7 +98,7 @@
                 <v-col cols="12" md="6" lg="4">
                   <v-text-field
                       v-model="registro.specialty"
-                      label="Especialidad"
+                      label="Departamento"
                       outlined
                       dense
                       readonly

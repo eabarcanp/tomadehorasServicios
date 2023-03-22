@@ -346,7 +346,7 @@
                 <v-row v-if="step === 5 && filteredDoctors.length === 0 && filteredDoctorsTelemedicine.length === 0">
                   <v-col cols="12" class="d-flex justify-center align-center">
                     <span class="text-h6">
-                      No hay doctores disponibles para esta especialidad
+                      No hay atenciones disponibles para esta categoría
                     </span>
                   </v-col>
                 </v-row>
@@ -686,8 +686,8 @@ export default {
                 id_schedule: item.id_schedule,
                 id_doctor: item.id_doctor,
                 id_specialty: item.id_specialty,
-                name: this.especialidad.name + " - " + (item.telemedicine ? "Telemedicina" : "Presencial"),
-                details: `Especialidad: ${this.especialidad.name} - Horario: ${moment(starts_at).format("HH:mm")} - ${moment(ends_at).format("HH:mm")}`,
+                name: this.especialidad.name + " - " + (item.telemedicine ? "Telemática" : "Presencial"),
+                details: `Categoría: ${this.especialidad.name} - Horario: ${moment(starts_at).format("HH:mm")} - ${moment(ends_at).format("HH:mm")}`,
                 telemedicine: item.telemedicine
               })
             }
@@ -769,7 +769,7 @@ export default {
                 id_doctor: item.id_doctor,
                 id_specialty: item.id_specialty,
                 name: this.especialidad.name + " - " + (item.telemedicine ? "Telemedicina" : "Presencial"),
-                details: `Especialidad: ${this.especialidad.name} - Horario: ${moment(starts_at).format("HH:mm")} - ${moment(ends_at).format("HH:mm")}`,
+                details: `Categoría: ${this.especialidad.name} - Horario: ${moment(starts_at).format("HH:mm")} - ${moment(ends_at).format("HH:mm")}`,
                 telemedicine: item.telemedicine
               })
             }
@@ -1018,7 +1018,7 @@ export default {
                 id_doctor: item.id_doctor,
                 id_specialty: item.id_specialty,
                 name: this.especialidad.name,
-                details: `Especialidad: ${this.especialidad.name} - Horario: ${moment(starts_at).format("HH:mm")} - ${moment(ends_at).format("HH:mm")}`,
+                details: `Categoría: ${this.especialidad.name} - Horario: ${moment(starts_at).format("HH:mm")} - ${moment(ends_at).format("HH:mm")}`,
                 telemedicine: this.telemedicina
               })
             }

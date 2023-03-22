@@ -842,6 +842,22 @@ export function getGeneralParams() {
 			});
 	})
 }
+export function putGeneralParams(data, id) {
+	return new Promise((resolve, reject) => {
+		request({
+			url: endpoints.general_parameters + '/' + id,
+			method: 'put',
+			data
+		})
+			.then(async function (response) {
+				resolve(response.data)
+			})
+			.catch(function (error) {
+				reject(error)
+				console.log(error)
+			});
+	})
+}
 
 // shortener url
 export function createShortUrls(data) {

@@ -174,7 +174,7 @@
                   <v-select
                       v-model="especialidad"
                       :items="especialidadesNombre"
-                      label="Especialidad"
+                      label="Categoría"
                       outlined
                       dense
                   ></v-select>
@@ -375,7 +375,7 @@ export default {
       // compare start and end time with momentjs
       if (this.especialidad === "") {
         this.showMessage = true
-        this.message = "Debe seleccionar una especialidad"
+        this.message = "Debe seleccionar una atención"
         this.messageColor = "error"
         return
       }
@@ -508,7 +508,7 @@ export default {
 
         console.log(speciality)
         let event = {
-          "name": speciality.name + " - " +( item.telemedicine ? "Telemedicina" : "Presencial"),
+          "name": speciality.name + " - " +( item.telemedicine ? "Telemática" : "Presencial"),
           "id_specialty": item.id_specialty,
           "start": start + 'T' + item.start_time,
           "end": end + 'T' + item.end_time,
@@ -517,7 +517,7 @@ export default {
           "id": item.id,
           "telemedicine": item.telemedicine,
           "weekday": days[item.day - 1],
-          "details": `Especialidad: ${speciality.name} <br> Telemedicina: ${item.telemedicine ? 'Si' : 'No'} <br> Horario: ${item.start_time} - ${item.end_time}`,
+          "details": `Categoría: ${speciality.name} <br> Telemática: ${item.telemedicine ? 'Si' : 'No'} <br> Horario: ${item.start_time} - ${item.end_time}`,
         }
         dataEvents.push(event)
       })

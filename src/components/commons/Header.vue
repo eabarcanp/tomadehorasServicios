@@ -183,7 +183,7 @@ export default {
       if (role === 'ADMIN_ROLE') {
         return 'Administrador'
       } else if (role === 'DOCTOR_ROLE') {
-        return 'Doctor'
+        return 'Atención'
       } else {
         return 'Toma de Horas'
       }

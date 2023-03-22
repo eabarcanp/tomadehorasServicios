@@ -183,7 +183,7 @@ export default {
       console.log(item)
       this.editedIndex = this.especialidades.indexOf(item)
       this.editedItem = Object.assign({}, item)
-      this.formTitle = 'Editar Categoría'
+      this.formTitle = 'Editar Tipo de Atención'
       this.dialog = true
 
     },

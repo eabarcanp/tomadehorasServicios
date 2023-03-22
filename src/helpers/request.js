@@ -4,8 +4,8 @@ import axios from 'axios'
 //const BASE = 'http://zonecam.naturalphone.cl:8024/' //Desarrollo
 // const BASE = 'http://localhost:8024' //Local
 // const BASE = 'https://devapis.anubys.cl:8024' //Desarrollo
-//const BASE = 'https://devapis.anubys.cl:8026/' //Desarrollo
-const BASE = 'https://5203-190-196-70-164.sa.ngrok.io' //Desarrollo
+const BASE = 'https://devapis.anubys.cl:8026/' //Desarrollo
+//const BASE = 'https://5203-190-196-70-164.sa.ngrok.io' //Desarrollo
 
 
 
@@ -24,7 +24,7 @@ service.interceptors.request.use(
 		// config.headers['company-key'] = 'b6a8ac31-838c-4f3e-b592-58a7640a9f67'
     config.headers['Content-Type'] = contentType
     config.headers['X-Requested-With'] = 'XMLHttpRequest'
-    config.headers['ngrok-skip-browser-warning'] = 'a'
+    //config.headers['ngrok-skip-browser-warning'] = 'a'
     return config
   },
   error => {

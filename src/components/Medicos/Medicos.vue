@@ -95,10 +95,10 @@
       v-model="editedItem.documents"
     ></v-textarea> -->
 
-        <label>Requisitos:</label>
+        <span class="headline">Documentos/Requisitos:</span>
         <div v-if="editedItem && editedItem.required_documents"  v-for="(document, i) in editedItem.required_documents" :key="i">
         <v-text-field
-          label="Documento"
+          label="requisito"
           v-model="editedItem.required_documents[i]"
         ></v-text-field>
 

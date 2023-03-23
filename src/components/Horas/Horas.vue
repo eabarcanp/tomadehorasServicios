@@ -1138,7 +1138,7 @@ getGeneralParams().then((res) => {
     ,
     subsStep() {
       this.step--;
-      if(this.step === 3 && !this.enable_telemedicine){
+      if(this.step === 3 && this.enable_telemedicine == 0){
         this.step--;
       }
     },

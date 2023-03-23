@@ -431,7 +431,9 @@ import {
   createPatient, getBookingSlotsByDoctor,
   getBookingSlotsBySpecialty,
   getListSpecialties,
-  getPatientByRut
+  getPatientByRut,
+  getGeneralParams
+
 } from "@/helpers/api/horas_medicas";
 import Swal from "sweetalert2";
 
@@ -525,7 +527,7 @@ export default {
       valid: false,
       validRut: false,
       weekPage: 0,
-      enable_telemedicine: true,
+      enable_telemedicine: null,
     }
   },
   mounted() {
@@ -553,6 +555,12 @@ export default {
   },
 
   methods: {
+    setGeneralParams() {
+getGeneralParams().then((res) => {
+          this.$store.commit("setGeneralParams", res);
+          this.enable_telemedicine = res[1].value
+        });
+    },
 
     randomColor() {
       const listColor = [
@@ -598,9 +606,7 @@ export default {
     },
     validate,
     checkTelemedicine() {
-      if (this.$store.state.generalParams) {
-        this.enable_telemedicine = this.$store.state.generalParams.some(param => param.name === 'enable_telemedicine' && param.value === '1')
-      }
+      this.setGeneralParams()
     },
     saveDateBirth(date) {
       this.$refs.menuBirth.save(date)
@@ -899,7 +905,7 @@ export default {
     async nextStepSpecialty() {
       await this.checkTelemedicine();
       console.log(this.enable_telemedicine);
-      if(this.enable_telemedicine){
+      if(this.enable_telemedicine == 1){
         this.step = 3;
       }else{
         await this.getEspecialidades();

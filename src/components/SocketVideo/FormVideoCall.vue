@@ -37,7 +37,7 @@
         <v-card  elevation="0" style="background:transparent">
           <v-row>
             <v-col>
-              <p style="color:#feb62d" class="title text-center">Selecciona una especialidad</p>
+              <p style="color:#feb62d" class="title text-center">Selecciona una categoría</p>
               <v-select
               background-color="white"
                 style="width:50%"

@@ -189,7 +189,7 @@
                           @click="() => {isEditPatient ? createPaciente() : nextStepSpecialty()}"
                           rounded
                           block
-                          :disabled="loading || !validRut"
+                          :disabled="!patient.name || !patient.birthday || !patient.phone || !patient.email || !patient.address || loading || !validRut"
                       >
                         Siguiente
                       </v-btn>
@@ -443,7 +443,7 @@ export default {
       date: null,
       dialogPaciente: false,
       isNewPatient: false,
-      titleDialogPaciente: "Nuevo Paciente",
+      titleDialogPaciente: "Nuevo Usuario",
       isEditPatient: true,
       direccion: "",
       direccionRules: [
@@ -538,7 +538,20 @@ export default {
     menuBirth(val) {
       val && setTimeout(() => (this.activePicker = 'YEAR'))
     },
+    step(val) {
+        if (val === 1) {
+        this.patient = {
+        rut: "",
+        name: "",
+        email: "",
+        birthday: "",
+        address: "",
+        phone: ""
+      }
+      }
+    }
   },
+
   methods: {
 
     randomColor() {
@@ -596,7 +609,7 @@ export default {
       this.dialogPaciente = false;
       this.isNewPatient = false;
       this.isEditPatient = false;
-      this.titleDialogPaciente = "Nuevo Paciente";
+      this.titleDialogPaciente = "Nuevo Usuario";
       this.$refs.form.reset();
       this.$refs.form.resetValidation();
     },
@@ -614,8 +627,8 @@ export default {
         this.loading = false;
         this.patient = response
         await Swal.fire({
-          title: 'Paciente creado',
-          text: 'Paciente creado correctamente',
+          title: 'Usuario creado',
+          text: 'Usuario creado correctamente',
           icon: 'success',
           confirmButtonText: 'Aceptar'
         })

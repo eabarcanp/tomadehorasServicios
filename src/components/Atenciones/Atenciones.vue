@@ -517,7 +517,7 @@ export default {
                 "doctor_id": item.id_doctor,
                 "doctor_name": item.doctor_name,
                 "telemedicine": item.telemedicine,
-                "details": `Usuario: ${item.patient_name} - Horario: ${item.start_time} - ${item.end_time} - Especialidad: ${item.specialty_name}`,
+                "details": `Usuario: ${item.patient_name} - Horario: ${item.start_time} - ${item.end_time} - Categoría: ${item.specialty_name}`,
               }
               events.push(event)
             })

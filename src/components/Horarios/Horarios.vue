@@ -84,15 +84,14 @@
                 >
                   <v-toolbar
                       :color="selectedEvent.color"
-                      dark
-                  >
+                      dark>
                     <v-btn icon @click="showEditEvent">
                       <v-icon>mdi-pencil</v-icon>
                     </v-btn>
                     <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
                     <v-spacer></v-spacer>
-                    <v-btn icon>
-                      <v-icon>mdi-dots-vertical</v-icon>
+                    <v-btn icon @click="deleteS(selectedEvent)">
+                      <v-icon>mdi-delete</v-icon>
                     </v-btn>
                   </v-toolbar>
                   <v-card-text>
@@ -274,7 +273,7 @@
 <script>
 import {format, validate} from 'rut.js';
 import moment from "moment";
-import {createSchedule, getDoctor, getScheduleByDoctor, updateSchedule} from "@/helpers/api/horas_medicas";
+import {createSchedule, getDoctor, getScheduleByDoctor, updateSchedule, deleteSchedule} from "@/helpers/api/horas_medicas";
 import store from "@/store";
 
 export default {
@@ -350,6 +349,16 @@ export default {
     this.checkTelemedicine()
   },
   methods: {
+    async deleteS(event) {
+      await deleteSchedule(event.id)
+          this.loading = false
+          this.dialog = false
+          this.message = "Horario Eliminado correctamente"
+          this.messageColor = "success"
+          this.showMessage = true
+          this.selectedOpen = false
+      await this.getHorarios()
+    },
     checkTelemedicine() {
       this.$store.state.generalParams.enable_telemedicine.value === "1" ? this.enable_telemedicine = true : this.enable_telemedicine = false
     },
@@ -472,7 +481,7 @@ export default {
       this.editedItem = Object.assign({}, this.selectedEvent)
       this.editedItem.startTime = moment(this.editedItem.start).format('HH:mm')
       this.editedItem.endTime = moment(this.editedItem.end).format('HH:mm')
-      this.especialidad = this.editedItem.name
+      this.especialidad = ""
       this.formTitle = 'Editar Horario'
       this.isEditing = true
       this.dialog = true
@@ -503,10 +512,7 @@ export default {
         let end = moment(startOfWeek).day(days[item.day - 1]).format('YYYY-MM-DD')
 
         let speciality = this.medico.specialties.filter(speciality => speciality.id === item.id_specialty)[0]
-        console.log(this.medico)
-        console.log(item)
 
-        console.log(speciality)
         let event = {
           "name": speciality.name + " - " +( item.telemedicine ? "Telemática" : "Presencial"),
           "id_specialty": item.id_specialty,

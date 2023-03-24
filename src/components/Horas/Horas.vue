@@ -432,8 +432,8 @@ import {
   getBookingSlotsBySpecialty,
   getListSpecialties,
   getPatientByRut,
-  getGeneralParams
-
+  getGeneralParams,
+  sendWhatsapp
 } from "@/helpers/api/horas_medicas";
 import Swal from "sweetalert2";
 
@@ -882,7 +882,6 @@ getGeneralParams().then((res) => {
       this.loading = true;
       await getPatientByRut(this.patient.rut)
           .then(response => {
-            console.log(response);
             this.loading = false;
             if (response.id) {
               this.patient = response;
@@ -904,7 +903,6 @@ getGeneralParams().then((res) => {
 
     async nextStepSpecialty() {
       await this.checkTelemedicine();
-      console.log(this.enable_telemedicine);
       if(this.enable_telemedicine == 1){
         this.step = 3;
       }else{
@@ -1101,7 +1099,9 @@ getGeneralParams().then((res) => {
         telemedicine: this.telemedicina
       }
       createAppointment(data).then(async response => {
-        console.log(response);
+/*         sendWhatsapp(data).then(res => {
+        console.log(res);
+      }) */
         await Swal.fire({
           title: 'Cita creada',
           text: 'La cita se ha creado correctamente',
@@ -1154,7 +1154,9 @@ getGeneralParams().then((res) => {
         telemedicine: this.selectedEvent.telemedicine
       }
       createAppointment(data).then(async response => {
-        console.log(response);
+/*         sendWhatsapp(data).then(res => {
+          console.log(res);
+        }) */
         await Swal.fire({
           title: 'Cita creada',
           text: 'La cita se ha creado correctamente',

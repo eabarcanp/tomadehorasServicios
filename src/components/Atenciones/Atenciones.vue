@@ -129,7 +129,7 @@
                 >
                   <v-list-item-content>
                     <v-list-item-title class="text-h6">
-                      {{event.patient_name}} | {{event.start}} | {{event.patient_rut}}
+                      {{event.patient_name}} ({{event.patient_rut}}) | {{event.start}} 
                     </v-list-item-title>
                   </v-list-item-content>
                   <v-list-item-action>
@@ -430,15 +430,15 @@ export default {
           value: "day"
         },
         {
-          text: "Semana",
+          text: "Esta Semana",
           value: "week"
         },
         {
-          text: "Mes",
+          text: "Este Mes",
           value: "month"
         },
         {
-          text: "Año",
+          text: "Este Año",
           value: "year"
         },
         

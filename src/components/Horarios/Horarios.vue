@@ -260,7 +260,7 @@
       <v-snackbar
           v-model="showMessage"
           vertical
-          bottom
+          top
           center
           :color="messageColor"
       >
@@ -384,7 +384,7 @@ export default {
       // compare start and end time with momentjs
       if (this.especialidad === "") {
         this.showMessage = true
-        this.message = "Debe seleccionar una atención"
+        this.message = "Debe seleccionar una categoría"
         this.messageColor = "error"
         return
       }

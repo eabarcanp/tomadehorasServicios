@@ -76,8 +76,23 @@
 
         <v-col cols="12" md="8" class="order-first order-md-last" v-if="!loading">
 
-          <div class="d-flex justify-space-between align-start card-selector flex-column pa-4 ">
-            <h3 class="label-selector">Consultas </h3>
+          <div class="d-flex justify-space-between card-selector flex-column pa-4 ">
+          <div class="d-flex justify-space-between align-center">
+            <h3 class="label-selector mb-5">Consultas </h3>
+
+        <div  class="ml-2 justify-space-between align-center">
+          <v-select
+           item-text="text"
+          item-value="value"
+          v-model="timeRange"
+          :items="timeRageItems"
+          v-on:change="getAgendaMedico"
+          label="Filtrar por fecha"
+          solo
+        ></v-select>
+        </div>
+
+          </div>
             <!--                numero de pacientes esperando consulta -->
 
 <!--            <v-btn-->
@@ -114,7 +129,7 @@
                 >
                   <v-list-item-content>
                     <v-list-item-title class="text-h6">
-                      {{event.patient_name}} | {{event.start}}
+                      {{event.patient_name}} | {{event.start}} | {{event.patient_rut}}
                     </v-list-item-title>
                   </v-list-item-content>
                   <v-list-item-action>
@@ -131,6 +146,7 @@
                 </v-list-item>
               </v-list-item-group>
             </v-list>
+          
 
           </div>
 
@@ -407,6 +423,26 @@ export default {
       },
       valid: false,
       weekPage: 0,
+      timeRange: "day",
+      timeRageItems: [
+        {
+          text: "Hoy",
+          value: "day"
+        },
+        {
+          text: "Semana",
+          value: "week"
+        },
+        {
+          text: "Mes",
+          value: "month"
+        },
+        {
+          text: "Año",
+          value: "year"
+        },
+        
+      ]
     }
   },
   mounted() {
@@ -486,9 +522,9 @@ export default {
     async getAgendaMedico() {
       this.loading = true
       try {
-        let from = moment().startOf('week').add(this.weekPage, 'week').format('YYYY-MM-DD');
+        let from = moment().startOf(this.timeRange).add(this.weekPage, 'week').format('YYYY-MM-DD');
         // let from = moment().format('YYYY-MM-DD');
-        let to = moment().endOf('week').add(this.weekPage, 'week').format('YYYY-MM-DD');
+        let to = moment().endOf(this.timeRange).add(this.weekPage, 'week').format('YYYY-MM-DD');
         // let to = moment().format('YYYY-MM-DD');
         let data = {
           doctor_id: this.id,
@@ -515,6 +551,7 @@ export default {
                 "specialty_id": item.id_specialty,
                 "specialty_name": item.specialty_name,
                 "doctor_id": item.id_doctor,
+                "patient_rut": item.patient_rut,
                 "doctor_name": item.doctor_name,
                 "telemedicine": item.telemedicine,
                 "details": `Usuario: ${item.patient_name} - Horario: ${item.start_time} - ${item.end_time} - Categoría: ${item.specialty_name}`,
@@ -563,6 +600,8 @@ export default {
         doctor_id: event.doctor_id,
         doctor_name: event.doctor_name,
         telemedicine: event.telemedicine,
+        patient_rut: patient_rut,
+
       })
 
       await this.$router.push({

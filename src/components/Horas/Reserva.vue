@@ -2,7 +2,6 @@
     <v-container fluid class="containerApp">
       <v-btn class="buttonLogin" large color="primary darken-1" rounded @click="goToLogin">Iniciar Sesión</v-btn>
       <Horas/>
-      <Drawer/>
     </v-container>
 </template>
 

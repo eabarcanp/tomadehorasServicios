@@ -11,14 +11,14 @@
         <p class="mb-0">{{ message }}</p>
       </v-snackbar>
 
-        <v-row class="justify-center ">                                      
+        <v-row class="justify-center" :class="{'datos-personales': this.step == 2 }">                                      
         <v-col cols="1" md="2" lg="3" class="ma-0 pa-0 d-flex justify-end align-start mt-10 pt-10 ">
           <v-btn
               height="80"
               elevation="4"
               tile
               color="grey darken-1"
-              class="white--text"
+              class="white--text d-none d-md-flex"
               style="border-radius: 10px 0 0 10px"
               @click="subsStep()"
               v-if="step > 1"
@@ -28,7 +28,7 @@
         </v-col>
         <v-col cols="10" md="8" lg="6" class="ma-0 pa-0">
       
-          <v-card class="elevation-12 rounded-xl">
+          <v-card class="elevation-12 rounded-xl" :class="{'card-reserva': this.step == 5}">
             <v-row class="justify-center ">
         <img style="opacity:1" src="../../assets/servicio.jpg"  alt="" width="259" />
       </v-row>    
@@ -36,10 +36,21 @@
               <v-icon
                   color="blue"
                   size="40"
+                  class="d-none d-md-flex"
               >
                 {{ switchIcon() }}
               </v-icon>
-              <h3 class=" ma-2 mx-4">
+              <v-btn
+              height="65"
+              elevation="0"
+              color="transparent"
+              class="primary--text d-md-none"
+              style="border-radius: 50px;"
+              @click="subsStep()"
+              v-if="step > 1">
+            <v-icon>mdi-arrow-left</v-icon>
+          </v-btn>
+              <h3 class=" ma-2 mx-4 card-title">
                 {{ switchTitle() }}
               </h3>
             </v-card-title>
@@ -281,7 +292,7 @@
                                class="d-flex justify-center align-center"
                                v-for="(item, i) in filteredDoctors">
                           <v-row class="d-flex justify-center align-center" :key="i">
-                            <v-col cols="5" class="d-flex align-center">
+                            <v-col cols="12" md="5" class="d-flex align-center">
                               <div  class="rounded-xl justify-center align-center d-flex"
                                    style="width: 100px; height: 100px; background-color: #e0e0e0; overflow: hidden">
                               <v-img
@@ -307,7 +318,7 @@
                                 </div>
                               </div>
                             </v-col>
-                            <v-col cols="4" class="d-flex justify-center align-center flex-column">
+                            <v-col cols="12" md="4" class="d-flex justify-center align-center flex-column">
                               <div v-if="item.slots">
                                 {{ formatDate(item.slots) }}
                               </div>
@@ -352,7 +363,7 @@
                 </v-row>
                 <!--              step 6, lista de horas disponibles-->
                 <v-row class="d-flex justify-center align-center" v-if="step >= 6">
-                  <v-col cols="6" class="d-flex justify-center align-center flex-column">
+                  <v-col cols="12" md="6" class="d-flex justify-center align-center flex-column">
                     <v-date-picker
                         v-model="selectedDate"
                         :min="minDate"
@@ -364,7 +375,7 @@
                         event-color="green lighten-1"
                     ></v-date-picker>
                   </v-col>
-                  <v-col cols="6" class="d-flex justify-center align-center flex-column">
+                  <v-col cols="12" md="6" class="d-flex justify-center align-center flex-column">
                     <v-select
                         v-model="selectedEvent"
                         :items="availableHours"
@@ -1204,6 +1215,44 @@ getGeneralParams().then((res) => {
   overflow-y: auto;
   height: 100%;
 }
+
+.card-title {
+  font-size: .8rem ;
+}
+
+  @media (min-width: 475px) {
+    .card-title {
+      font-size: 1rem ;
+    }
+} 
+
+.card-reserva {
+  margin-top: 80px;
+}
+@media (min-width: 475px) {
+  .card-reserva {
+    margin-top: 0;
+  }
+}
+.subtitle {
+  font-size: 12px;
+}
+  @media (min-width: 475px) {
+    .subtitle {
+      font-size: 16px;
+    }
+}
+
+
+.datos-personales {
+  margin-top:70px;
+}
+@media (min-width: 475px) {
+  .datos-personales {
+    margin-top: 0;
+  }
+}
+
 
 
 </style>

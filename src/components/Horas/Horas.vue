@@ -181,6 +181,7 @@
                     </v-col>
                     <v-col cols="10" sm="6" md="5" class="justify-space-around align-center d-flex flex-row flex-wrap">
                       <v-btn
+                          v-show="!isNewPatient"
                           color="primary"
                           class="white--text"
                           @click="isEditPatient = !isEditPatient"
@@ -642,13 +643,22 @@ getGeneralParams().then((res) => {
       };
       createPatient(data).then(async (response) => {
         this.loading = false;
-        this.patient = response
+        //this.patient = response
+        if (this.isNewPatient) {
         await Swal.fire({
           title: 'Usuario creado',
           text: 'Usuario creado correctamente',
           icon: 'success',
           confirmButtonText: 'Aceptar'
         })
+        } else if (!this.isNewPatient) {
+            await Swal.fire({
+              title: "Usuario Editado",
+              text: "Usuario Editado correctamente",
+              icon: "success",
+              confirmButtonText: "Aceptar",
+            });
+          }
         await this.nextStepSpecialty();
 
 
@@ -901,7 +911,7 @@ getGeneralParams().then((res) => {
               this.step = 2;
             } else {
               this.isNewPatient = true;
-              this.isEditPatient = false;
+              this.isEditPatient = true;
               this.step = 2;
             }
 

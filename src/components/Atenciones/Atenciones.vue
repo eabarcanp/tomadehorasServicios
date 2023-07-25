@@ -78,7 +78,11 @@
 
           <div class="d-flex justify-space-between card-selector flex-column pa-4 ">
           <div class="d-flex justify-space-between align-center">
-            <h3 class="label-selector mb-5">Consultas </h3>
+            <h3 class="label-selector mb-5">Consultas <v-tooltip bottom><template v-slot:activator="{ on, attrs }">
+              <v-icon v-bind="attrs" v-on="on" class="ml-2" color="info">mdi-information-outline</v-icon>
+                  </template>
+              <span>Acceso a ficha de atención y/o atención telemática</span>
+            </v-tooltip></h3>
 
         <div  class="ml-2 justify-space-between align-center">
           <v-select

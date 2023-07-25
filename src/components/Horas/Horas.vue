@@ -540,6 +540,7 @@ export default {
       validRut: false,
       weekPage: 0,
       enable_telemedicine: null,
+      wsp_enable: null
     }
   },
   mounted() {
@@ -571,6 +572,7 @@ export default {
 getGeneralParams().then((res) => {
           this.$store.commit("setGeneralParams", res);
           this.enable_telemedicine = res[1].value
+          this.wsp_enable = res.filter(parameter => parameter.id == 3)[0].value
         });
     },
 
@@ -1125,7 +1127,7 @@ getGeneralParams().then((res) => {
       }) */
         await Swal.fire({
           title: 'Cita creada',
-          text: 'La cita se ha creado correctamente',
+          text: `Los datos de la reserva han sido enviados a su correo ${this.wsp_enable == "1" ? 'y Whatsapp.' : ''}`,
           icon: 'success',
           confirmButtonText: 'Aceptar',
         }).then(result => {
@@ -1180,7 +1182,7 @@ getGeneralParams().then((res) => {
         }) */
         await Swal.fire({
           title: 'Cita creada',
-          text: 'La cita se ha creado correctamente',
+          text: `Los datos de la reserva han sido enviados a su correo ${this.wsp_enable == "1" ? 'y Whatsapp.' : ''}`,
           icon: 'success',
           confirmButtonText: 'Aceptar',
         }).then(result => {
@@ -1221,7 +1223,7 @@ getGeneralParams().then((res) => {
 
 }
 .gradientBackground {
-  background: linear-gradient(45deg, #318BFD 0%,  #318BFD 100%);
+  background: #003153;
   overflow-y: auto;
   height: 100%;
 }

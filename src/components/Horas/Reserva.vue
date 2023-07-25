@@ -1,6 +1,23 @@
 <template>
     <v-container fluid class="containerApp">
-      <v-btn class="buttonLogin" large color="primary darken-1" rounded @click="goToLogin">Iniciar Sesión</v-btn>
+      <v-app-bar
+        class="appbar"
+        color="#8B008B"
+        app
+        height="100px"
+        elevation="0"
+    >
+    <div style="display:flex; justify-content:space-between; width:100%; align-items: center;">
+      <img
+      style="width: 220px;"
+          src="@/assets/loespejo-logo.png"
+          max-height="150"
+          class=" d-none d-sm-block"
+/>
+
+      <v-btn style="color: white;" class="" large color="#003153" rounded @click="goToLogin">Iniciar Sesión</v-btn>
+    </div>
+    </v-app-bar>
       <Horas/>
     </v-container>
 </template>

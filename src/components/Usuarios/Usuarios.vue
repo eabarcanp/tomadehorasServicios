@@ -8,6 +8,11 @@
             <v-toolbar card elevation="1">
               <v-icon left>mdi-account</v-icon>
               <v-toolbar-title>Usuarios</v-toolbar-title>
+              <v-tooltip bottom><template v-slot:activator="{ on, attrs }">
+              <v-icon v-bind="attrs" v-on="on" class="ml-2" color="info">mdi-information-outline</v-icon>
+                  </template>
+              <span>Cada usuario corresponde a un tipo de atención, y se le deben asignar sus respectivas credenciales de acceso.</span>
+            </v-tooltip>
               <v-spacer></v-spacer>
               <v-toolbar-items>
                 <v-btn icon  @click="crearUsuario">
@@ -577,5 +582,9 @@ export default {
 .gradientBackground {
   background: linear-gradient(45deg, #318BFD 0%, #318BFD 100%);
   overflow-y: auto;
+}
+.v-tooltip__content {
+  width: 280px;
+  text-align: justify;
 }
 </style>

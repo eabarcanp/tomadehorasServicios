@@ -8,7 +8,12 @@
           <v-card class="rounded-xl">
             <v-toolbar card color="white" elevation="1">
               <v-icon left>mdi-clipboard-multiple</v-icon>
-              <v-toolbar-title>Categorias</v-toolbar-title>
+              <v-toolbar-title>Categorías</v-toolbar-title>
+              <v-tooltip bottom><template v-slot:activator="{ on, attrs }">
+              <v-icon v-bind="attrs" v-on="on" class="ml-2" color="info">mdi-information-outline</v-icon>
+                  </template>
+              <span>Las categorías se asocian a tipos de atención, para ser clasificados en el procedimiento de reserva.</span>
+            </v-tooltip>
               <v-spacer></v-spacer>
               <v-toolbar-items>
                 <div class="justify-center align-center d-flex">
@@ -258,9 +263,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .gradientBackground {
   background: linear-gradient(45deg, #318BFD 0%, #318BFD 100%);
   overflow-y: auto;
+}
+.v-tooltip__content {
+  max-width: 280px;
+  text-align: justify;
 }
 </style>

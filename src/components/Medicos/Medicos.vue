@@ -8,6 +8,11 @@
             <v-toolbar card  elevation="1">
               <v-icon left>mdi-clipboard-multiple</v-icon>
               <v-toolbar-title>Tipo de Atencion</v-toolbar-title>
+              <v-tooltip bottom><template v-slot:activator="{ on, attrs }">
+              <v-icon v-bind="attrs" v-on="on" class="ml-2" color="info">mdi-information-outline</v-icon>
+                  </template>
+              <span>Configuración avanzada de tipos de atenciones. Horario, Agenda, Requisitos, Categoría/s asociadas</span>
+            </v-tooltip>
             </v-toolbar>
             <v-card-title>
               <v-text-field
@@ -527,5 +532,9 @@ export default {
 .gradientBackground {
   background: linear-gradient(45deg, #318BFD 0%,  #318BFD 100%);
   overflow-y: auto;
+}
+.v-tooltip__content {
+  max-width: 280px;
+  text-align: justify;
 }
 </style>

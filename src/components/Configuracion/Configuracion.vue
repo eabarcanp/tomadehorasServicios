@@ -9,6 +9,11 @@
             <v-toolbar card color="white" elevation="1">
               <v-icon left>mdi-cog</v-icon>
               <v-toolbar-title>Configuración</v-toolbar-title>
+              <v-tooltip bottom><template v-slot:activator="{ on, attrs }">
+              <v-icon v-bind="attrs" v-on="on" class="ml-2" color="info">mdi-information-outline</v-icon>
+                  </template>
+              <span>Configuración parámetros generales de atención.</span>
+            </v-tooltip>
               <v-spacer></v-spacer>
             </v-toolbar>
             <v-card-title class="ma-2">

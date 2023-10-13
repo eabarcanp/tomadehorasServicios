@@ -16,7 +16,7 @@ service.interceptors.request.use(
     if (token) {
       config.headers['Authorization'] = 'Bearer ' + token
     }
-		config.headers['company-key'] = '67b41b98-7a0c-4fc4-8767-e81f4e617e06'
+		config.headers['company-key'] = '1e61da5a-8d27-4a35-8cac-f92a676d63a2'
 		// config.headers['company-key'] = 'b6a8ac31-838c-4f3e-b592-58a7640a9f67'
     config.headers['Content-Type'] = contentType
     config.headers['X-Requested-With'] = 'XMLHttpRequest'

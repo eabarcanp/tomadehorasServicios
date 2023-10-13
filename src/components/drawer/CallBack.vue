@@ -146,7 +146,7 @@ export default {
       this.device.setup(this.token);
       this.device.ready((device) => {
         this.device.connect({
-          company_key: "67b41b98-7a0c-4fc4-8767-e81f4e617e06",
+          company_key: "1e61da5a-8d27-4a35-8cac-f92a676d63a2",
         });
       });
 

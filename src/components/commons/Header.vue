@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app-bar
-        color="transparent"
+        color="primary"
         app
         height="100px"
         elevation="0"
@@ -125,6 +125,15 @@
               <v-icon>mdi-calendar</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Horas Reservadas</v-list-item-title>
+          </v-list-item>
+            <v-list-item
+              @click="goTo('RegistroFichas')"
+              v-if="role === 'ADMIN_ROLE' || role === 'DOCTOR_ROLE'"
+          >
+            <v-list-item-icon>
+              <v-icon>mdi-list-box-outline</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Fichas de atención</v-list-item-title>
           </v-list-item>
           <v-list-item
               @click="goTo('Configuracion')"

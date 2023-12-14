@@ -476,11 +476,12 @@ export function getPatientByRut(rut) {
 	})
 }
 
-export function getListPatients() {
+export function getListPatients(data) {
 	return new Promise((resolve, reject) => {
 		request({
 			url: endpoints.patients,
 			method: 'get',
+			params: data
 		})
 			.then(async function (response) {
 				resolve(response)

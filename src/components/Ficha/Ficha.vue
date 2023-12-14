@@ -18,7 +18,6 @@
                       label="Nombre"
                       outlined
                       dense
-                      readonly
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" md="6" lg="4">
@@ -36,7 +35,6 @@
                       label="Telefono"
                       outlined
                       dense
-                      readonly
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" md="6" lg="4">
@@ -45,7 +43,6 @@
                       label="Email"
                       outlined
                       dense
-                      readonly
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" md="6" lg="4">
@@ -54,20 +51,43 @@
                       label="Direccion"
                       outlined
                       dense
-                      readonly
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" md="6" lg="4">
-                  <v-text-field
-                      v-model="paciente.birthday"
-                      label="Fecha de Nacimiento"
-                      outlined
-                      dense
-                      readonly
-                  ></v-text-field>
+                      <v-menu
+                          ref="menuBirth"
+                          v-model="menuBirth"
+                          :close-on-content-click="false"
+                          transition="scale-transition"
+                          offset-y
+                          min-width="auto"
+                      >
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-text-field
+                              v-model="paciente.birthday"
+                              label="Fecha de Nacimiento"
+                              prepend-icon="mdi-calendar"
+                              readonly
+                              v-bind="attrs"
+                              v-on="on"
+                              outlined
+                              class="inputForm"
+
+                              dense
+                          ></v-text-field>
+                        </template>
+                        <v-date-picker
+                            v-model="paciente.birthday"
+                            :active-picker.sync="activePicker"
+                            :max="(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)"
+                            min="1923-01-01"
+                            @change="saveDateBirth"
+                        ></v-date-picker>
+                      </v-menu>
                 </v-col>
               </v-row>
 
+            <div style="display:flex; justify-content: space-between;">
               <v-btn
                   v-if="nuevoRegistroDisponible"
                   color="primary"
@@ -76,6 +96,16 @@
               >
                 Nuevo Registro
               </v-btn>
+
+              <v-btn
+              color="primary"
+              class="white--text"
+              @click="editPaciente"
+              :disabled="!paciente.name || !paciente.birthday || !paciente.phone || !paciente.email || !paciente.address"
+              >
+                Guardar Cambios
+              </v-btn>
+            </div>
             </v-card-text>
           </v-card>
         </v-col>
@@ -95,14 +125,23 @@
                       readonly
                   ></v-text-field>
                 </v-col>
-                <v-col cols="12" md="6" lg="4">
+                <v-col cols="12" md="6" lg="4" v-if="$route.params.from !== 'register'">
                   <v-text-field
+                  
                       v-model="registro.specialty"
                       label="Departamento"
                       outlined
                       dense
                       readonly
                   ></v-text-field>
+                </v-col>
+                <v-col cols="12" md="6" lg="4">
+                <v-select
+                  :items="funcionarios"
+                  label="Funcionario"
+                  v-model="funcionario"
+                  outlined
+                ></v-select>
                 </v-col>
                 <v-col cols="12" md="12" lg="12">
                   <v-textarea
@@ -239,6 +278,7 @@ import {
   getMedicalRecords,
   getPatientById,
   getSpecialtyById,
+  createPatient
   } from "@/helpers/api/horas_medicas";
 import Swal from "sweetalert2";
 
@@ -269,11 +309,12 @@ export default {
       menu: false,
       menu2: false,
       menu3: false,
+      menuBirth: false,
       message: "",
       messageColor: "",
       registro: {},
       nuevoRegistro: false,
-      nuevoRegistroDisponible: false,
+      nuevoRegistroDisponible: true,
       paciente: {},
       recurringSchedules: [],
       registros: [],
@@ -295,8 +336,10 @@ export default {
         day: 'Dia',
         // '4day': '4 Days',
       },
-      valid: false
-    }
+      valid: false,
+      funcionarios: ['Emmeline Solís Polanco', 'Luisa Videla Donoso', 'Silvia Salinas Vidal', 'Oriana Bassi Gaete', 'Manuel Núñez Parra', 'Sandra Elgueta Marín', 'Betty Becerra Colicoy', 'Elizabeth Vergara Sepulveda', 'Elizabeth Plaza Chávez', 'Carlos Tapia Henríquez', 'Fabiola Monsalves Salas', 'Bárbara Cea Flores', 'Ana Vega Canales', 'Jessica Cerda Barrios', 'Kathy Mora Muñoz', 'Adriano Vera Calisto', 'Fabiola Jara Alarcón', 'María Teresa Espinoza Narváez', 'Javiera Campusano Caris', 'Karin Valencia Muñoz', 'Claudia Aravena King', 'Cinthya Sotomayor Monsalve', 'Pamela Méndez Espinoza'],
+      funcionario: ''
+    } 
   },
   mounted() {
     if (this.$route.params.id) {
@@ -327,7 +370,7 @@ export default {
       this.loading = true
       await getMedicalRecords(this.id).then(res => {
         this.registros = res.medicalRecords
-        this.nuevoRegistroDisponible = res.canAddMedicalRecord
+        //this.nuevoRegistroDisponible = res.canAddMedicalRecord
         this.loading = false
       }).catch(err => {
         this.loading = false
@@ -340,8 +383,8 @@ export default {
       const data = {
         id_patient: this.id,
         id_doctor: this.$store.state.userData.id,
-        id_specialty: this.especialidad.id,
-        description: this.registro.description
+        id_specialty: this.especialidad.id || '',
+        description: this.registro.description + '.' + ' ' + this.funcionario 
       }
 
       createMedicalRecord(data).then(res => {
@@ -387,6 +430,31 @@ export default {
         doctor: this.$store.state.userData.name,
         specialty: this.especialidad.name
       }
+    },
+    editPaciente() {
+      this.loading = true;
+      let data = {
+        rut: this.paciente.rut,
+        name: this.paciente.name,
+        email: this.paciente.email,
+        phone: this.paciente.phone,
+        address: this.paciente.address,
+        birthday: this.paciente.birthday,
+      };
+      createPatient(data).then(async (response) => {
+        this.loading = false;
+          await Swal.fire({
+            title: 'Usuario Editado',
+            text: 'Usuario Editado correctamente',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          })
+        })
+      .catch((error) => {
+        console.log(error);
+      });
+
+      this.loading = false;
     },
   }
 }

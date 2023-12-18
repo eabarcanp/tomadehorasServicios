@@ -84,8 +84,8 @@
               <span>Acceso a ficha de atención y/o atención telemática</span>
             </v-tooltip></h3>
 
-        <div  class="ml-2 justify-space-between align-center">
-          <v-select
+        <div  class="ml-2 justify-space-between align-center" style="display:flex; gap: 20px;">
+<!--           <v-select
            item-text="text"
           item-value="value"
           v-model="timeRange"
@@ -93,7 +93,34 @@
           v-on:change="getAgendaMedico"
           label="Filtrar por fecha"
           solo
-        ></v-select>
+        ></v-select> -->
+              <v-menu
+      ref="menu4"
+      v-model="menu4"
+      :close-on-content-click="false"
+      transition="scale-transition"
+      offset-y
+      min-width="auto">
+      <template v-slot:activator="{ on, attrs }">
+        <v-text-field
+          v-model="dateRangeText"
+          label="Rango de fechas"
+          prepend-icon="mdi-calendar"
+          readonly
+          v-bind="attrs"
+          v-on="on"
+        ></v-text-field>
+      </template>
+      <v-date-picker
+        v-model="dates"
+        @change="save"
+        range
+      ></v-date-picker>
+    </v-menu>
+
+    <v-btn @click="filtrar" color="primary">
+      Filtrar
+    </v-btn>
         </div>
 
           </div>
@@ -388,6 +415,8 @@ export default {
       menu: false,
       menu2: false,
       menu3: false,
+      menu4: false,
+      dates: [moment().format('YYYY-MM-DD'), moment().format('YYYY-MM-DD')],
       message: "",
       messageColor: "",
       recurringSchedules: [],
@@ -448,6 +477,11 @@ export default {
         
       ]
     }
+  },
+  computed: {
+    dateRangeText () {
+      return this.dates.join(' - ')
+    },
   },
   mounted() {
     if (this.$route.params.id) {
@@ -532,8 +566,8 @@ export default {
         // let to = moment().format('YYYY-MM-DD');
         let data = {
           doctor_id: this.id,
-          from: from,
-          to: to
+          from: this.dates[0],
+          to: this.dates[1]
         }
         let events = []
 
@@ -674,8 +708,13 @@ export default {
           }
         })
       }
+    },
+    save (date) {
+      this.$refs.menu4.save(date)
+    },
+    filtrar() {
+      this.getAgendaMedico()
     }
-
   }
 }
 </script>

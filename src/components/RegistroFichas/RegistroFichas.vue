@@ -122,7 +122,7 @@ export default {
 
     getListPatients(data).then((res) => {
         this.listaFichas = res.pacientes.rows;
-        this.pageCount = res.pacientes.count / this.itemsPerPage
+        this.pageCount = Math.ceil(res.pacientes.count / this.itemsPerPage)
     });
 
   },
@@ -131,7 +131,7 @@ export default {
     const data = {page: this.page, limit: this.itemsPerPage}
       getListPatients(data).then((res) => {
         this.listaFichas = res.pacientes.rows;
-        this.pageCount = res.pacientes.count / this.itemsPerPage
+        this.pageCount = Math.ceil(res.pacientes.count / this.itemsPerPage)
     });
     },
       search: _.debounce(function (value) {
@@ -139,7 +139,7 @@ export default {
         const data = {page: this.page, limit: this.itemsPerPage, search: this.search}
           getListPatients(data).then((res) => {
           this.listaFichas = res.pacientes.rows;
-          this.pageCount = res.pacientes.count / this.itemsPerPage
+          this.pageCount = Math.ceil(res.pacientes.count / this.itemsPerPage)
         });
       }
     }, 1000)
